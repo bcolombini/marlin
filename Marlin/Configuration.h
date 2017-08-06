@@ -74,7 +74,7 @@
 // User-specified version info of this build to display in [Pronterface, etc] terminal window during
 // startup. Implementation of an idea by Prof Braino to inform user that any changes made to this
 // build by the user have been successfully uploaded into firmware.
-#define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(Noiado)" // Who made the changes.
 #define SHOW_BOOTSCREEN
 #define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // will be shown during bootup in line 1
 #define STRING_SPLASH_LINE2 WEBSITE_URL         // will be shown during bootup in line 2
@@ -90,7 +90,7 @@
 // boot image unmodified. For an example have a look at the bq Hephestos 2
 // example configuration folder.
 //
-//#define SHOW_CUSTOM_BOOTSCREEN
+#define SHOW_CUSTOM_BOOTSCREEN
 // @section machine
 
 /**
@@ -123,11 +123,12 @@
 
 // Optional custom name for your RepStrap or other custom machine
 // Displayed in the LCD "Ready" message
-//#define CUSTOM_MACHINE_NAME "3D Printer"
+
+#define CUSTOM_MACHINE_NAME "Tretas`s"
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
-//#define MACHINE_UUID "00000000-0000-0000-0000-000000000000"
+#define MACHINE_UUID "d15b036d-d833-43ec-ab3b-7abc1da43dba"
 
 // @section extruder
 
@@ -272,7 +273,7 @@
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
 #define TEMP_SENSOR_4 0
-#define TEMP_SENSOR_BED 0
+#define TEMP_SENSOR_BED 1
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
 #define DUMMY_THERMISTOR_998_VALUE 25
@@ -306,12 +307,12 @@
 // When temperature exceeds max temp, your heater will be switched off.
 // This feature exists to protect your hotend from overheating accidentally, but *NOT* from thermistor short/failure!
 // You should use MINTEMP for thermistor short/failure protection.
-#define HEATER_0_MAXTEMP 275
+#define HEATER_0_MAXTEMP 235
 #define HEATER_1_MAXTEMP 275
 #define HEATER_2_MAXTEMP 275
 #define HEATER_3_MAXTEMP 275
 #define HEATER_4_MAXTEMP 275
-#define BED_MAXTEMP 150
+#define BED_MAXTEMP 100
 
 //===========================================================================
 //============================= PID Settings ================================
@@ -434,7 +435,7 @@
 
 // Uncomment one of these options to enable CoreXY, CoreXZ, or CoreYZ kinematics
 // either in the usual order or reversed
-//#define COREXY
+#define COREXY
 //#define COREXZ
 //#define COREYZ
 //#define COREYX
@@ -458,27 +459,27 @@
 //#define USE_ZMAX_PLUG
 
 // coarse Endstop Settings
-#define ENDSTOPPULLUPS // Comment this out (using // at the start of the line) to disable the endstop pullup resistors
+//#define ENDSTOPPULLUPS // Comment this out (using // at the start of the line) to disable the endstop pullup resistors
 
 #if DISABLED(ENDSTOPPULLUPS)
   // fine endstop settings: Individual pullups. will be ignored if ENDSTOPPULLUPS is defined
   //#define ENDSTOPPULLUP_XMAX
   //#define ENDSTOPPULLUP_YMAX
   //#define ENDSTOPPULLUP_ZMAX
-  //#define ENDSTOPPULLUP_XMIN
-  //#define ENDSTOPPULLUP_YMIN
+  #define ENDSTOPPULLUP_XMIN
+  #define ENDSTOPPULLUP_YMIN
   //#define ENDSTOPPULLUP_ZMIN
   //#define ENDSTOPPULLUP_ZMIN_PROBE
 #endif
 
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
-#define X_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define Y_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define Z_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
+#define X_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
+#define Y_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
+#define Z_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
 #define X_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define Z_MIN_PROBE_ENDSTOP_INVERTING false // set to true to invert the logic of the probe.
+#define Z_MIN_PROBE_ENDSTOP_INVERTING false// set to true to invert the logic of the endstop.
 
 // Enable this feature if all enabled endstop pins are interrupt-capable.
 // This will remove the need to poll the interrupt pins, saving many CPU cycles.
@@ -509,7 +510,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 76.38946945, 76.38946945, 389.6356906, 22.24991104}
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -759,9 +760,9 @@
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
-#define X_MAX_POS 200
-#define Y_MAX_POS 200
-#define Z_MAX_POS 200
+#define X_MAX_POS 180
+#define Y_MAX_POS 180
+#define Z_MAX_POS 150
 
 // If enabled, axes won't move below MIN_POS in response to movement commands.
 #define MIN_SOFTWARE_ENDSTOPS
@@ -1146,81 +1147,79 @@
 
 // @section lcd
 
-/**
- * LCD LANGUAGE
- *
- * Select the language to display on the LCD. These languages are available:
- *
- *    en, an, bg, ca, cn, cz, cz_utf8, de, el, el-gr, es, eu, fi, fr, gl, hr,
- *    it, kana, kana_utf8, nl, pl, pt, pt_utf8, pt-br, pt-br_utf8, ru, tr, uk,
- *    zh_CN, zh_TW, test
- *
- * :{ 'en':'English', 'an':'Aragonese', 'bg':'Bulgarian', 'ca':'Catalan', 'cn':'Chinese', 'cz':'Czech', 'cz_utf8':'Czech (UTF8)', 'de':'German', 'el':'Greek', 'el-gr':'Greek (Greece)', 'es':'Spanish', 'eu':'Basque-Euskera', 'fi':'Finnish', 'fr':'French', 'gl':'Galician', 'hr':'Croatian', 'it':'Italian', 'kana':'Japanese', 'kana_utf8':'Japanese (UTF8)', 'nl':'Dutch', 'pl':'Polish', 'pt':'Portuguese', 'pt-br':'Portuguese (Brazilian)', 'pt-br_utf8':'Portuguese (Brazilian UTF8)', 'pt_utf8':'Portuguese (UTF8)', 'ru':'Russian', 'tr':'Turkish', 'uk':'Ukrainian', 'zh_CN':'Chinese (Simplified)', 'zh_TW':'Chinese (Taiwan)', test':'TEST' }
- */
-#define LCD_LANGUAGE en
+//
+// LCD LANGUAGE
+//
+// Here you may choose the language used by Marlin on the LCD menus, the following
+// list of languages are available:
+//    en, an, bg, ca, cn, cz, de, el, el-gr, es, eu, fi, fr, gl, hr, it,
+//    kana, kana_utf8, nl, pl, pt, pt_utf8, pt-br, pt-br_utf8, ru, tr, uk, test
+//
+// :{ 'en':'English', 'an':'Aragonese', 'bg':'Bulgarian', 'ca':'Catalan', 'cn':'Chinese', 'cz':'Czech', 'de':'German', 'el':'Greek', 'el-gr':'Greek (Greece)', 'es':'Spanish', 'eu':'Basque-Euskera', 'fi':'Finnish', 'fr':'French', 'gl':'Galician', 'hr':'Croatian', 'it':'Italian', 'kana':'Japanese', 'kana_utf8':'Japanese (UTF8)', 'nl':'Dutch', 'pl':'Polish', 'pt':'Portuguese', 'pt-br':'Portuguese (Brazilian)', 'pt-br_utf8':'Portuguese (Brazilian UTF8)', 'pt_utf8':'Portuguese (UTF8)', 'ru':'Russian', 'tr':'Turkish', 'uk':'Ukrainian', 'test':'TEST' }
+//
+#define LCD_LANGUAGE pt-br
 
-/**
- * LCD Character Set
- *
- * Note: This option is NOT applicable to Graphical Displays.
- *
- * All character-based LCDs provide ASCII plus one of these
- * language extensions:
- *
- *  - JAPANESE ... the most common
- *  - WESTERN  ... with more accented characters
- *  - CYRILLIC ... for the Russian language
- *
- * To determine the language extension installed on your controller:
- *
- *  - Compile and upload with LCD_LANGUAGE set to 'test'
- *  - Click the controller to view the LCD menu
- *  - The LCD will display Japanese, Western, or Cyrillic text
- *
- * See https://github.com/MarlinFirmware/Marlin/wiki/LCD-Language
- *
- * :['JAPANESE', 'WESTERN', 'CYRILLIC']
- */
+//
+// LCD Character Set
+//
+// Note: This option is NOT applicable to Graphical Displays.
+//
+// All character-based LCD's provide ASCII plus one of these
+// language extensions:
+//
+//  - JAPANESE ... the most common
+//  - WESTERN  ... with more accented characters
+//  - CYRILLIC ... for the Russian language
+//
+// To determine the language extension installed on your controller:
+//
+//  - Compile and upload with LCD_LANGUAGE set to 'test'
+//  - Click the controller to view the LCD menu
+//  - The LCD will display Japanese, Western, or Cyrillic text
+//
+// See https://github.com/MarlinFirmware/Marlin/wiki/LCD-Language
+//
+// :['JAPANESE', 'WESTERN', 'CYRILLIC']
+//
 #define DISPLAY_CHARSET_HD44780 JAPANESE
 
-/**
- * LCD TYPE
- *
- * Enable ULTRA_LCD for a 16x2, 16x4, 20x2, or 20x4 character-based LCD.
- * Enable DOGLCD for a 128x64 (ST7565R) Full Graphical Display.
- * (These options will be enabled automatically for most displays.)
- *
- * IMPORTANT: The U8glib library is required for Full Graphic Display!
- *            https://github.com/olikraus/U8glib_Arduino
- */
-//#define ULTRA_LCD   // Character based
+//
+// LCD TYPE
+//
+// You may choose ULTRA_LCD if you have character based LCD with 16x2, 16x4, 20x2,
+// 20x4 char/lines or DOGLCD for the full graphics display with 128x64 pixels
+// (ST7565R family). (This option will be set automatically for certain displays.)
+//
+// IMPORTANT NOTE: The U8glib library is required for Full Graphic Display!
+//                 https://github.com/olikraus/U8glib_Arduino
+//
+#define ULTRA_LCD   // Character based
 //#define DOGLCD      // Full graphics display
 
-/**
- * SD CARD
- *
- * SD Card support is disabled by default. If your controller has an SD slot,
- * you must uncomment the following option or it won't work.
- *
- */
-//#define SDSUPPORT
+//
+// SD CARD
+//
+// SD Card support is disabled by default. If your controller has an SD slot,
+// you must uncomment the following option or it won't work.
+//
+#define SDSUPPORT
 
-/**
- * SD CARD: SPI SPEED
- *
- * Enable one of the following items for a slower SPI transfer speed.
- * This may be required to resolve "volume init" errors.
- */
-//#define SPI_SPEED SPI_HALF_SPEED
+//
+// SD CARD: SPI SPEED
+//
+// Uncomment ONE of the following items to use a slower SPI transfer
+// speed. This is usually required if you're getting volume init errors.
+//
+#define SPI_SPEED SPI_HALF_SPEED
 //#define SPI_SPEED SPI_QUARTER_SPEED
 //#define SPI_SPEED SPI_EIGHTH_SPEED
 
-/**
- * SD CARD: ENABLE CRC
- *
- * Use CRC checks and retries on the SD communication.
- */
-//#define SD_CHECK_AND_RETRY
+//
+// SD CARD: ENABLE CRC
+//
+// Use CRC checks and retries on the SD communication.
+//
+#define SD_CHECK_AND_RETRY
 
 //
 // ENCODER SETTINGS
@@ -1228,30 +1227,30 @@
 // This option overrides the default number of encoder pulses needed to
 // produce one step. Should be increased for high-resolution encoders.
 //
-//#define ENCODER_PULSES_PER_STEP 1
+#define ENCODER_PULSES_PER_STEP 1
 
 //
 // Use this option to override the number of step signals required to
 // move between next/prev menu items.
 //
-//#define ENCODER_STEPS_PER_MENU_ITEM 5
+#define ENCODER_STEPS_PER_MENU_ITEM 5
 
 /**
- * Encoder Direction Options
- *
- * Test your encoder's behavior first with both options disabled.
- *
- *  Reversed Value Edit and Menu Nav? Enable REVERSE_ENCODER_DIRECTION.
- *  Reversed Menu Navigation only?    Enable REVERSE_MENU_DIRECTION.
- *  Reversed Value Editing only?      Enable BOTH options.
- */
+   Encoder Direction Options
+
+   Test your encoder's behavior first with both options disabled.
+
+    Reversed Value Edit and Menu Nav? Enable REVERSE_ENCODER_DIRECTION.
+    Reversed Menu Navigation only?    Enable REVERSE_MENU_DIRECTION.
+    Reversed Value Editing only?      Enable BOTH options.
+*/
 
 //
-// This option reverses the encoder direction everywhere.
+// This option reverses the encoder direction everywhere
 //
 //  Set this option if CLOCKWISE causes values to DECREASE
 //
-//#define REVERSE_ENCODER_DIRECTION
+#define REVERSE_ENCODER_DIRECTION
 
 //
 // This option reverses the encoder direction for navigating LCD menus.
@@ -1259,14 +1258,14 @@
 //  If CLOCKWISE normally moves DOWN this makes it go UP.
 //  If CLOCKWISE normally moves UP this makes it go DOWN.
 //
-//#define REVERSE_MENU_DIRECTION
+#define REVERSE_MENU_DIRECTION
 
 //
 // Individual Axis Homing
 //
 // Add individual axis homing items (Home X, Home Y, and Home Z) to the LCD menu.
 //
-//#define INDIVIDUAL_AXIS_HOMING_MENU
+#define INDIVIDUAL_AXIS_HOMING_MENU
 
 //
 // SPEAKER/BUZZER
@@ -1274,7 +1273,7 @@
 // If you have a speaker that can produce tones, enable it here.
 // By default Marlin assumes you have a buzzer with a fixed frequency.
 //
-//#define SPEAKER
+#define SPEAKER
 
 //
 // The duration and frequency for the UI feedback sound.
@@ -1347,7 +1346,7 @@
 //
 // Note: Usually sold with a white PCB.
 //
-//#define REPRAP_DISCOUNT_SMART_CONTROLLER
+#define REPRAP_DISCOUNT_SMART_CONTROLLER
 
 //
 // GADGETS3D G3D LCD/SD Controller
@@ -1392,21 +1391,6 @@
 //#define BQ_LCD_SMART_CONTROLLER
 
 //
-// ANET_10 Controller supported displays.
-//
-//#define ANET_KEYPAD_LCD         // Requires ADC_KEYPAD_PIN to be assigned to an analog pin.
-                                  // This LCD is known to be susceptible to electrical interference
-                                  // which scrambles the display.  Pressing any button clears it up.
-//#define ANET_FULL_GRAPHICS_LCD  // Anet 128x64 full graphics lcd with rotary encoder as used on Anet A6
-                                  // A clone of the RepRapDiscount full graphics display but with
-                                  // different pins/wiring (see pins_ANET_10.h).
-
-//
-// LCD for Melzi Card with Graphical LCD
-//
-//#define LCD_FOR_MELZI
-
-//
 // CONTROLLER TYPE: I2C
 //
 // Note: These controllers require the installation of Arduino's LiquidCrystal_I2C
@@ -1421,9 +1405,6 @@
 
 //
 // Sainsmart YW Robot (LCM1602) LCD Display
-//
-// Note: This controller requires F.Malpartida's LiquidCrystal_I2C library
-// https://bitbucket.org/fmalpartida/new-liquidcrystal/wiki/Home
 //
 //#define LCD_I2C_SAINSMART_YWROBOT
 
@@ -1460,8 +1441,8 @@
 //
 //#define SAV_3DGLCD
 #if ENABLED(SAV_3DGLCD)
-  //#define U8GLIB_SSD1306
-  #define U8GLIB_SH1106
+//#define U8GLIB_SSD1306
+#define U8GLIB_SH1106
 #endif
 
 //
@@ -1471,11 +1452,6 @@
 // LCD configuration: http://reprap.org/wiki/SAV_3D_LCD
 //
 //#define SAV_3DLCD
-
-//
-// TinyBoy2 128x64 OLED / Encoder Panel
-//
-//#define OLED_PANEL_TINYBOY2
 
 //=============================================================================
 //=============================== Extra Features ==============================
@@ -1609,7 +1585,7 @@
  */
 //#define FILAMENT_WIDTH_SENSOR
 
-#define DEFAULT_NOMINAL_FILAMENT_DIA 3.00   // (mm) Diameter of the filament generally used (3.0 or 1.75mm), also used in the slicer. Used to validate sensor reading.
+#define DEFAULT_NOMINAL_FILAMENT_DIA 1.75   // (mm) Diameter of the filament generally used (3.0 or 1.75mm), also used in the slicer. Used to validate sensor reading.
 
 #if ENABLED(FILAMENT_WIDTH_SENSOR)
   #define FILAMENT_SENSOR_EXTRUDER_NUM 0    // Index of the extruder that has the filament sensor (0,1,2,3)
